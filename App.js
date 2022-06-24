@@ -8,6 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 // components
 import Home from './components/home';
 import POE from './components/poe';
+import OV from './components/ov';
+import CD from './components/cd';
 
 const Stack = createStackNavigator();
 
@@ -15,8 +17,10 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="POE" component={POE} />
+        <Stack.Screen name="WFWorldstate" component={Home} />
+        <Stack.Screen name="Plains of Eidelon" component={POE} />
+        <Stack.Screen name="Orb Vallis" component={OV} />
+        <Stack.Screen name="Cambion Drift" component={CD} />
       </Stack.Navigator>
     </NavigationContainer>
   );
