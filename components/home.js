@@ -1,28 +1,49 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, TouchableHighlight, StyleSheet, ImageBackground } from 'react-native'
+
+// images
+import PoE from './static/images/PoE.jpeg'
+import OV from './static/images/OV.jpeg'
+import CD from './static/images/CD.jpeg'
 export default function Home({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
-            <View>
-                <Text>Plains of Eidelon</Text>
-                <Button 
-                    title='Plains of Eidelon'
-                    onPress={ e => navigation.navigate("Plains of Eidelon") }
-                />
+            <View style={styles.flex}>
+                <ImageBackground source={PoE}>
+                    <TouchableHighlight
+                        onPress = { e => navigation.navigate("POE") }
+                        underlayColor = {styles.underlayColor}
+                    >
+                        <Text style={styles.text}>Plains of Eidelon</Text>
+                    </TouchableHighlight>
+                </ImageBackground>
             </View>
-            <View>
-                <Text>Orb Vallis</Text>
-                <Button 
-                    title='Orb Vallis'
-                    onPress={ e => navigation.navigate("Orb Vallis") }
-                />
+            <View style={styles.flex}>
+                <ImageBackground source={OV}>
+                    <TouchableHighlight
+                        onPress={ e => navigation.navigate("OV") }
+                        underlayColor = {styles.underlayColor}
+                    >
+                        <Text style={styles.text}>Orb Vallis</Text>
+                    </TouchableHighlight>
+                </ImageBackground>
             </View>
-            <View>
-                <Text>Cambion Drift</Text>
-                <Button 
-                    title='Cambion Drift'
-                    onPress={ e => navigation.navigate("Cambion Drift") }
-                />
+            <View style={styles.flex}>
+                <ImageBackground source={CD}>
+                    <TouchableHighlight
+                        onPress={ e => navigation.navigate("CD") }
+                        underlayColor = {styles.underlayColor}
+                    >
+                        <Text style={styles.text}>Cambion Drift</Text>
+                    </TouchableHighlight>
+                </ImageBackground>
             </View>
+            
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    underlayColor: '#00000000',
+    flex: { flex: 1, justifyContent: 'center', width: '100%', position: 'relative', overflow: 'hidden' },
+    text: { textAlign: 'center', justifyContent: 'center', padding: 100, color: 'white', backgroundColor: '#00000033' }
+  })
