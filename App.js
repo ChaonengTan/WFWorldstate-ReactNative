@@ -1,9 +1,11 @@
 // In App.js in a new project
 
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { ApolloProvider } from '@apollo/client'
+import { client } from './functions/client';
 
 // components
 import Home from './components/home';
@@ -13,17 +15,42 @@ import CD from './components/cd';
 
 const Stack = createStackNavigator();
 
-function App() {
+export default function App() {
+  const headerStyle = {
+    headerStyle: {
+      backgroundColor: styles.header.backgroundColor
+    },
+    headerTintColor: styles.header.headerTintColor
+  }
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="WFWorldstate" component={Home} />
-        <Stack.Screen name="Plains of Eidelon" component={POE} />
-        <Stack.Screen name="Orb Vallis" component={OV} />
-        <Stack.Screen name="Cambion Drift" component={CD} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            ...headerStyle
+          }}
+        >
+          <Stack.Screen name="WFWorldstate" component={Home} options={{
+            title: 'WFWorldstate'
+          }}/>
+          <Stack.Screen name="POE" component={POE} options={{
+            title: 'Plains of Eidelon'
+          }}/>
+          <Stack.Screen name="OV" component={OV} options={{
+            title: 'Orb Vallis'
+          }}/>
+          <Stack.Screen name="CD" component={CD} options={{
+            title: 'Cambion Drift'
+          }}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
 
-export default App;
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#000',
+    headerTintColor: '#fff'
+  }
+})
